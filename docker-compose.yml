@@ -32,8 +32,7 @@ services:
         depends_on:
             - "db"
         ports:
-            - 80:8080
-        command: php -r 'var_dump(new PDO("mysql:host=db", "root", "toto"));'
+            - 80:8181
         command: ./vendor/bin/phpunit --bootstrap vendor/autoload.php tests --testdox
 
 volumes:

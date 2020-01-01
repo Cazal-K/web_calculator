@@ -16,7 +16,7 @@ before_install:
   - ./composer.phar install -d web_calc
 script:
   - docker-compose build
-  - docker-compose run app_test
+  - docker-compose up app_test
   - docker-compose up
 
 notifications:
