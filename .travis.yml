@@ -1,8 +1,5 @@
 sudo: required
-branches:
-  only:
-  - master
-  - stable
+
 services:
   - docker
 
@@ -23,6 +20,6 @@ script:
   - docker-compose run test
   - docker-compose up
 
-  notifications:
-    email:
-      - cazal.kevin.a@gmail.com
+notifications:
+  email:
+    - cazal.kevin.a@gmail.com
