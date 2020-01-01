@@ -31,8 +31,6 @@ services:
             - DB_PASSWD=${DB_PASSWD}
         depends_on:
             - "db"
-        ports:
-            - 80:8181
         command: ./vendor/bin/phpunit --bootstrap vendor/autoload.php tests --testdox
 
 volumes:
