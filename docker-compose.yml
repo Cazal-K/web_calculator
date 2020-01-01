@@ -1,0 +1,40 @@
+version: "3"
+
+services: 
+    db:
+        build: database
+        command: --default-authentication-plugin=mysql_native_password
+        environment:
+            - MYSQL_ROOT_PASSWORD=${DB_PASSWD}
+            - MYSQL_DATABASE=${DB_NAME}
+        expose:
+            - 3306
+        volumes:
+            - db_volume:/var/lib/mysql
+    app:
+        build: web_calc
+        environment:
+            - DB_HOST=db
+            - DB_NAME=${DB_NAME}
+            - DB_USER=root
+            - DB_PASSWD=${DB_PASSWD}
+        depends_on:
+            - "db"
+        ports:
+            - 80:8080
+    app_test:
+        build: web_calc
+        environment:
+            - DB_HOST=db
+            - DB_NAME=${DB_NAME}
+            - DB_USER=root
+            - DB_PASSWD=${DB_PASSWD}
+        depends_on:
+            - "db"
+        ports:
+            - 80:8080
+        command: php -r 'var_dump(new PDO("mysql:host=db", "root", "toto"));'
+        command: ./vendor/bin/phpunit --bootstrap vendor/autoload.php tests --testdox
+
+volumes:
+    db_volume:
