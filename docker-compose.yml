@@ -31,7 +31,7 @@ services:
             - DB_PASSWD=${DB_PASSWD}
         depends_on:
             - "db"
-        command: ./vendor/bin/phpunit --bootstrap vendor/autoload.php tests/OperationsTest.php --testdox
+        command: ./vendor/bin/phpunit --bootstrap vendor/autoload.php tests/OperationTest.php --testdox
 
 volumes:
     db_volume:
